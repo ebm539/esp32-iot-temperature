@@ -1,6 +1,6 @@
 # ESP32-based temperature sensor
 
-- Reads temperature and humidity data from a HTU21D, using [this ESP-IDF component](https://github.com/lucadentella/esp32_htu21d)
+- Reads temperature and humidity data from a HTU21D, using [the HTU21D ESP-IDF component by lucadentella](https://github.com/lucadentella/esp32_htu21d)
 - Publishes the temperature and humidity data to a MQTT broker every second. (The ESP32 is connected to the MQTT broker using TLS, and the ESP32 is authenticated to the MQTT broker using a client certificate)
 
 The code quality is "duct taped together" level :)
