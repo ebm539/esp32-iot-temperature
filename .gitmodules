@@ -1,0 +1,6 @@
+[submodule "submodules/htu21d"]
+	path = submodules/htu21d
+	url = https://github.com/lucadentella/esp32_htu21d.git
+[submodule "submodules/rust-esp32"]
+	path = submodules/rust-esp32
+	url = https://github.com/espressif/rust-esp32-example.git
