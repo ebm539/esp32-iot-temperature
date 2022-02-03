@@ -18,6 +18,7 @@ The code quality is "duct taped together" level :)
 - Use the [NVS](https://docs.espressif.com/projects/esp-idf/en/v4.3.2/esp32/api-reference/storage/nvs_flash.html) for configuration storage - e.g. MQTT broker hostname and port. (Currently, the MQTT broker details are hardcoded)
 - Configure the temperature and humidity data sending interval using a ESP32-subscribed MQTT topic and message
 - Turn on the onboard LED if there is a problem (e.g. not connected to Wi-Fi or the MQTT broker, no HTU21D, cannot send MQTT messages)
+- Rewrite in Rust
 
 ## How to build
 
