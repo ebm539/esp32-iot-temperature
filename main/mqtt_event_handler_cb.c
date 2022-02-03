@@ -5,6 +5,7 @@
 #include "init_htu21d.h"
 #include "htu21d.h"
 #include "read_temperature_and_humidity.h"
+#include "esp_system.h"
 
 static const char *TAG = "CB_READ_TEMP";
 
@@ -22,14 +23,22 @@ esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
             // this prints on Wi-Fi/MQTT disconnect...
             // TODO: fix printing htu21d status on MQTT disconnect
             // printf("htu21d init status: %d", status);
-            msg_id = esp_mqtt_client_publish(client, "/sensor/status", status, 0, 1, 1);
+
+			// Some magic voodoo to calculate the necessary size of the char array
+			// (Publishing the integer as-is did work, but caused a warning on compile)
+			char status_str[sizeof(int) * 4 + 1];
+			sprintf(status_str, "%d", status);
+            msg_id = esp_mqtt_client_publish(client, "/sensor/status", status_str, 0, 1, 1);
             if (status != HTU21D_ERR_OK) {
+				// TODO: handle missing HTU21D better
                 abort();
             }
+			// go to read_temperature_and_humidity.c
             read_temperature_and_humidity(client);
             break;
         case MQTT_EVENT_DISCONNECTED:
             ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
+			esp_restart();
             break;
         case MQTT_EVENT_SUBSCRIBED:
             ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
@@ -47,6 +56,7 @@ esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
             break;
         case MQTT_EVENT_ERROR:
             ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
+			esp_restart();
             break;
         default:
             ESP_LOGI(TAG, "Other event id:%d", event->event_id);

@@ -9,12 +9,12 @@ The code quality is "duct taped together" level :)
 
 - Program crashes and reboots when the HTU21D is not connected
 - Wi-Fi disconnects after 10-20 minutes for no apparent reason
-- After disconnecting and reconnecting to Wi-Fi, the program does not reconnect to the MQTT broker
 - Unsuccessful message publishing (a.k.a. problem when sending temperature and/or humidity data) is not handled? (Have not tested this)
-- The temperature and humidity sensor may be reinitialised unnecessarily on MQTT broker reconnection (i.e. after Wi-Fi disconnect and reconnect).
+- The temperature and humidity sensor may be reinitialised unnecessarily
 
 ## Planned features
 
+- Handle MQTT broker disconnection gracefully (don't reboot)
 - Use the [NVS](https://docs.espressif.com/projects/esp-idf/en/v4.3.2/esp32/api-reference/storage/nvs_flash.html) for configuration storage - e.g. MQTT broker hostname and port. (Currently, the MQTT broker details are hardcoded)
 - Configure the temperature and humidity data sending interval using a ESP32-subscribed MQTT topic and message
 - Turn on the onboard LED if there is a problem (e.g. not connected to Wi-Fi or the MQTT broker, no HTU21D, cannot send MQTT messages)
