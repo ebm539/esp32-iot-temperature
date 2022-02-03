@@ -1,6 +1,7 @@
 .vscode/
 .cache/
 build/
+cmake-build-debug-esp-idf/
 target/
 support/
 
