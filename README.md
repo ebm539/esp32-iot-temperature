@@ -11,6 +11,7 @@ The code quality is "duct taped together" level :)
 - Wi-Fi disconnects after 10-20 minutes for no apparent reason
 - Unsuccessful message publishing (a.k.a. problem when sending temperature and/or humidity data) is not handled? (Have not tested this)
 - The temperature and humidity sensor may be reinitialised unnecessarily
+- Sometimes the sensor can be disconnected after init, and nonsense readings will be sent (e.g. a temperature of -999 degrees C)
 
 ## Planned features
 
