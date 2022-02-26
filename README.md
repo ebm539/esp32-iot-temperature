@@ -11,7 +11,6 @@ The code quality is "duct taped together" level :)
 - Wi-Fi disconnects after 10-20 minutes for no apparent reason
 - Unsuccessful message publishing (a.k.a. problem when sending temperature and/or humidity data) is not handled? (Have not tested this)
 - The temperature and humidity sensor may be reinitialised unnecessarily
-- Sometimes the sensor can be disconnected after init, and nonsense readings will be sent (e.g. a temperature of -999 degrees C)
 
 ## Planned features
 
@@ -19,7 +18,8 @@ The code quality is "duct taped together" level :)
 - Use the [NVS](https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/storage/nvs_flash.html) for configuration storage - e.g. MQTT broker hostname and port. (Currently, the MQTT broker details are hardcoded)
 - Configure the temperature and humidity data sending interval using a ESP32-subscribed MQTT topic and message
 - Store more than one Wi-Fi SSID and password (i.e. read [the example_connect() code](https://github.com/espressif/esp-idf/blob/v4.4/examples/protocols/README.md) and adapt [the Wi-Fi connection code](https://github.com/espressif/esp-idf/tree/v4.4/examples/wifi/getting_started/station) for my use).
-- Turn on the onboard LED if there is a problem (e.g. not connected to Wi-Fi or the MQTT broker, no HTU21D, cannot send MQTT messages)
+- Turn on the onboard LED if there is a problem (e.g. not connected to Wi-Fi or the MQTT broker, no HTU21D, nonsense data, cannot send MQTT messages)
+- Send a MQTT message when a nonsense data has been read from the sensor
 - Rewrite in Rust
 - Connect to Bluetooth and use Bluetooth tethering (Bluetooth PAN?) if Wi-Fi is not available
 
