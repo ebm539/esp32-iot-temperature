@@ -10,7 +10,7 @@ void read_temperature_and_humidity(esp_mqtt_client_handle_t client) {
     char humidity[sizeof(float) * 4 + 1];
     while (true) {
 		float temperature_float = ht21d_read_temperature();
-	    float humidity_float = ht21d_read_humidity();
+		float humidity_float = ht21d_read_humidity();
 		// check if values are plausible, if they are not, skip rest of the while loop for this iteration
 		// plausible: temperature above absolute zero, neither value not -999 as defined in `components/htu21d/htu21d.c`
 		// the delay is purely arbitary
