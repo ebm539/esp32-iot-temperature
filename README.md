@@ -33,4 +33,4 @@ The code quality is "duct taped together" level :)
 - Configure your Wi-Fi SSID and password with `idf.py menuconfig`, then `Example Connection Configuration`. If you get an error about idf.py not found, check that ESP-IDF is installed and that the PATH variable is correctly configured - see [the ESP-IDF documentation](https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/get-started/index.html#step-4-set-up-the-environment-variables) for more information.
 - Build and flash the program with `idf.py build flash`. 
 
-The source files (*.c) and header files (*.h) are split to help me understand how multi-file code compilation in C works.
+The source files (\*.c) and header files (\*.h) are split to help me understand how multi-file code compilation in C works.
