@@ -1,6 +1,6 @@
 # ESP32-based temperature sensor
 
-- Reads temperature and humidity data from a HTU21D, using [the HTU21D ESP-IDF component by lucadentella](https://github.com/lucadentella/esp32_htu21d)
+- Reads temperature and humidity data from a HTU21D, using [the HTU21D ESP-IDF component by lucadentella](https://github.com/lucadentella/esp32_htu21d). There is documentation on this component [here](https://www.lucadentella.it/en/2017/08/25/esp32-21-mutua-autenticazione/)
 - Publishes the temperature and humidity data to a MQTT broker every second. (The ESP32 is connected to the MQTT broker using TLS, and the ESP32 is authenticated to the MQTT broker using a client certificate)
 
 The code quality is "duct taped together" level :)
@@ -16,6 +16,7 @@ The code quality is "duct taped together" level :)
 
 - Handle MQTT broker disconnection gracefully (don't reboot)
 - Use the [NVS](https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/storage/nvs_flash.html) for configuration storage - e.g. MQTT broker hostname and port. (Currently, the MQTT broker details are hardcoded)
+  - Or use SPIFFS? TODO: research differences between NVS and SPIFFS.
 - Configure the temperature and humidity data sending interval using a ESP32-subscribed MQTT topic and message
 - Store more than one Wi-Fi SSID and password (i.e. read [the example_connect() code](https://github.com/espressif/esp-idf/blob/v4.4/examples/protocols/README.md) and adapt [the Wi-Fi connection code](https://github.com/espressif/esp-idf/tree/v4.4/examples/wifi/getting_started/station) for my use).
 - Turn on the onboard LED if there is a problem (e.g. not connected to Wi-Fi or the MQTT broker, no HTU21D, nonsense data, cannot send MQTT messages)
