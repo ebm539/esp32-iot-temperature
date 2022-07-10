@@ -1,3 +1,9 @@
+https://www.lucadentella.it/en/2017/08/25/esp32-21-mutua-autenticazione/ references some mbedtls function calls that may be useful for implementing server certificate checking into WPA2 enterprise Wi-Fi connection
+- mbedtls_x509_crt_parse
+- mbedtls_ssl_conf_ca_chain
+- mbedtls_ssl_conf_own_cert
+- mbedtls_ssl_conf_authmode
+
 # ESP32-based temperature sensor
 
 - Reads temperature and humidity data from a HTU21D, using [the HTU21D ESP-IDF component by lucadentella](https://github.com/lucadentella/esp32_htu21d). There is documentation on this component [here](https://www.lucadentella.it/en/2017/08/25/esp32-21-mutua-autenticazione/)

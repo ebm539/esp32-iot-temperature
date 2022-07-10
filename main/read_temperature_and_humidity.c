@@ -12,10 +12,15 @@ void read_temperature_and_humidity(esp_mqtt_client_handle_t client) {
 		float temperature_float = ht21d_read_temperature();
 		float humidity_float = ht21d_read_humidity();
 		// check if values are plausible, if they are not, skip rest of the while loop for this iteration
-		// plausible: temperature above absolute zero, neither value not -999 as defined in `components/htu21d/htu21d.c`
+		// plausible: temperature above absolute zero, humidity between 0 and 100 (inclusive),
+		// neither value not -999 as defined in `components/htu21d/htu21d.c`
 		// the delay is purely arbitary
 		// TODO: print warning/send MQTT message informing me that a reading didn't make sense
 		// readings are -999 when there is no raw data, which is generally when the sensor has been disconnected after init
+		// TODO: separate out temperature and humidity validity checking and sending?
+		// the sensor is currently broken, and while temperature values _look_ sensible,
+		// the humidity values are nonsense (above 100% - the raw value is 65532)
+		// if one reading is bad, should the other reading (if valid) be trusted?
 		if (temperature_float < -274) {
 			vTaskDelay(1000 / portTICK_PERIOD_MS);
 			continue;
